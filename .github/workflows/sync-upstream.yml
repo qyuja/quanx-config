@@ -1,0 +1,55 @@
+name: Validate and sync upstream resources
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # UTC 21:00 = 北京时间次日 05:00
+    - cron: '0 21 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quanx-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Check generation and mirror integrity
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 tools/sync_upstream.py --check
+
+  sync:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - name: Mirror all rules, rewrites and dependencies
+        run: python3 tools/sync_upstream.py
+      - name: Commit changed resources
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git add -A -- rule rewrite script quantumultx UPSTREAM.json UPSTREAM_README.md LICENSES 20250723-self.conf
+          if git diff --cached --quiet; then
+            echo 'Upstream resources are unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Sync blackmatrix7 upstream rules and rewrites'
+          git push origin "HEAD:${DEFAULT_BRANCH}"

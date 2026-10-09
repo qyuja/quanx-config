@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+# Preserve upstream bytes so GitHub checkouts match the recorded hashes.
+/rule/** -text
+/rewrite/** -text
+/script/** -text
+/dependencies/** -text
+/UPSTREAM_README.md -text
+/LICENSES/** -text

@@ -1,0 +1,42 @@
+{
+  "config": "20250723-self.conf",
+  "raw_base": "https://raw.githubusercontent.com/qyuja/quanx-config/master/",
+  "default_policy": "兜底分流",
+  "update_interval": 86400,
+  "dependency_overrides_file": "dependencies/manifest.json",
+  "disabled_script_urls": [
+    "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Rewrite/bstar.js"
+  ],
+  "filters": [
+    {"path": "rule/QuantumultX/Lan/Lan.list", "tag": "局域网", "policy": "direct"},
+    {"path": "rule/QuantumultX/Direct/Direct.list", "tag": "规则修正", "policy": "direct"},
+    {"path": "rule/QuantumultX/Hijacking/Hijacking.list", "tag": "防劫持", "policy": "reject"},
+    {"path": "rule/QuantumultX/AdvertisingLite/AdvertisingLite.list", "tag": "广告拦截", "policy": "reject"},
+    {"path": "rewrite/QuantumultX/AdvertisingLite/AdvertisingLite.list", "tag": "BM配套_AdvertisingLite", "policy": "reject"},
+    {"path": "rule/QuantumultX/WeChat/WeChat.list", "tag": "微信直连", "policy": "direct"},
+    {"path": "rule/QuantumultX/GoogleVoice/GoogleVoice.list", "tag": "Google Voice", "policy": "美国节点"},
+    {"path": "rule/QuantumultX/OpenAI/OpenAI.list", "tag": "OpenAI", "policy": "美国节点"},
+    {"path": "rule/QuantumultX/Claude/Claude.list", "tag": "Claude", "policy": "美国节点"},
+    {"path": "rule/QuantumultX/Gemini/Gemini.list", "tag": "Gemini", "policy": "美国节点"},
+    {"path": "rule/QuantumultX/Copilot/Copilot.list", "tag": "Copilot", "policy": "美国节点"},
+    {"path": "rule/QuantumultX/Spotify/Spotify.list", "tag": "Spotify音乐", "policy": "声田音乐"},
+    {"path": "rule/QuantumultX/BiliBili/BiliBili.list", "tag": "哔哩哔哩", "policy": "哔哩哔哩"},
+    {"path": "rule/QuantumultX/YouTube/YouTube.list", "tag": "YouTube", "policy": "国际媒体"},
+    {"path": "rule/QuantumultX/Telegram/Telegram.list", "tag": "Telegram", "policy": "全球加速"},
+    {"path": "rule/QuantumultX/GlobalMedia/GlobalMedia.list", "tag": "国际媒体", "policy": "国际媒体"},
+    {"path": "rule/QuantumultX/Apple/Apple.list", "tag": "苹果服务", "policy": "苹果服务"},
+    {"path": "rule/QuantumultX/Global/Global.list", "tag": "全球加速", "policy": "全球加速"},
+    {"path": "rule/QuantumultX/ChinaMax/ChinaMax_No_IPv6.list", "tag": "国内网站", "policy": "direct"}
+  ],
+  "optional_policies": {
+    "Advertising": "reject",
+    "AdvertisingTest": "reject",
+    "China": "direct",
+    "ChinaTest": "direct",
+    "ChinaIPs": "direct",
+    "ChinaIPsBGP": "direct",
+    "ChinaMedia": "direct",
+    "ChinaMax": "direct"
+  },
+  "rewrite_enabled": ["AdvertisingLite"]
+}

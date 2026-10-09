@@ -1,0 +1,47 @@
+{
+  "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js": {
+    "path": "dependencies/blackmatrix7/script/smzdm/smzdm_remove_ads.js",
+    "source_url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/f26b88d5cfa0e3740be246c4c9021cd5619eb766/script/smzdm/smzdm_remove_ads.js",
+    "revision": "f26b88d5cfa0e3740be246c4c9021cd5619eb766",
+    "git_blob": "534e6903a8d1fe09cb46a128967f502bf61d0b03",
+    "sha256": "fdb818393f342c9955ba890476c40d4bfa0858d0c6dab26f78f4697d2df96330",
+    "bytes": 20338,
+    "status": "archived; removed upstream as outdated"
+  },
+  "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/dingdong/dingdong_checkin.js": {
+    "path": "dependencies/blackmatrix7/script/dingdong/dingdong_checkin.js",
+    "source_url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/f26b88d5cfa0e3740be246c4c9021cd5619eb766/script/dingdong/dingdong_checkin.js",
+    "revision": "f26b88d5cfa0e3740be246c4c9021cd5619eb766",
+    "git_blob": "128795f48b8028a7471c87b5b162eb96f60b3ab7",
+    "sha256": "f331551d7beecce73c879651b85faededd588ca2420c5177e41ffafedcb5d1e5",
+    "bytes": 30996,
+    "status": "archived; removed upstream as outdated"
+  },
+  "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/famijia/famijia_checkin.js": {
+    "path": "dependencies/blackmatrix7/script/famijia/famijia_checkin.js",
+    "source_url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/f26b88d5cfa0e3740be246c4c9021cd5619eb766/script/famijia/famijia_checkin.js",
+    "revision": "f26b88d5cfa0e3740be246c4c9021cd5619eb766",
+    "git_blob": "ac4e5ec1ee25ebf698368f20ed8f048fe74df71c",
+    "sha256": "8755e20eafa70938ac51281a8a9b7893ae50f8c684a1babe8714369ef7376679",
+    "bytes": 20551,
+    "status": "archived; removed upstream as outdated"
+  },
+  "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/manmanbuy/manmanbuy_checkin.js": {
+    "path": "dependencies/blackmatrix7/script/manmanbuy/manmanbuy_checkin.js",
+    "source_url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/f26b88d5cfa0e3740be246c4c9021cd5619eb766/script/manmanbuy/manmanbuy_checkin.js",
+    "revision": "f26b88d5cfa0e3740be246c4c9021cd5619eb766",
+    "git_blob": "b502579d813ba7418452d7a8aced22ae9d671937",
+    "sha256": "7c472867a49c0d4dd9f8c3b4c1872cca3cc233068001457c1dbd7d3c4ae6b58b",
+    "bytes": 19393,
+    "status": "archived; removed upstream as outdated"
+  },
+  "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_daily.js": {
+    "path": "dependencies/blackmatrix7/script/smzdm/smzdm_daily.js",
+    "source_url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/f26b88d5cfa0e3740be246c4c9021cd5619eb766/script/smzdm/smzdm_daily.js",
+    "revision": "f26b88d5cfa0e3740be246c4c9021cd5619eb766",
+    "git_blob": "005cef3295e6113a500252f7bd2da6ff42bdef01",
+    "sha256": "4ffb1026f98ec372603520adecba8e48ac27c36a4d39febb1b00447001808c3a",
+    "bytes": 62588,
+    "status": "archived; removed upstream as outdated"
+  }
+}
