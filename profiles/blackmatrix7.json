@@ -14,6 +14,7 @@
     {"path": "rule/QuantumultX/AdvertisingLite/AdvertisingLite.list", "tag": "广告拦截", "policy": "reject"},
     {"path": "rewrite/QuantumultX/AdvertisingLite/AdvertisingLite.list", "tag": "BM配套_AdvertisingLite", "policy": "reject"},
     {"path": "rule/QuantumultX/WeChat/WeChat.list", "tag": "微信直连", "policy": "direct"},
+    {"path": "rule/QuantumultX/Binance/Binance.list", "tag": "Binance", "policy": "Binance"},
     {"path": "rule/QuantumultX/GoogleVoice/GoogleVoice.list", "tag": "Google Voice", "policy": "美国节点"},
     {"path": "rule/QuantumultX/OpenAI/OpenAI.list", "tag": "OpenAI", "policy": "美国节点"},
     {"path": "rule/QuantumultX/Claude/Claude.list", "tag": "Claude", "policy": "美国节点"},
@@ -25,7 +26,7 @@
     {"path": "rule/QuantumultX/Telegram/Telegram.list", "tag": "Telegram", "policy": "全球加速"},
     {"path": "rule/QuantumultX/GlobalMedia/GlobalMedia.list", "tag": "国际媒体", "policy": "国际媒体"},
     {"path": "rule/QuantumultX/Apple/Apple.list", "tag": "苹果服务", "policy": "苹果服务"},
-    {"path": "rule/QuantumultX/Global/Global.list", "tag": "全球加速", "policy": "全球加速"},
+    {"path": "rule/QuantumultX/Global/Global.list", "tag": "全球加速", "policy": "全球加速", "exclude": ["rule/QuantumultX/Binance/Binance.list"]},
     {"path": "rule/QuantumultX/ChinaMax/ChinaMax_No_IPv6.list", "tag": "国内网站", "policy": "direct"}
   ],
   "optional_policies": {

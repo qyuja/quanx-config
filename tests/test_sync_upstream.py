@@ -111,6 +111,73 @@ class SyncTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "must use reject"):
             sync.render(self.source, profile)
 
+    def split_profile(self):
+        dedicated = "rule/QuantumultX/Binance/Binance.list"
+        aggregate = "rule/QuantumultX/Global/Global.list"
+        sync.write_text(self.source / dedicated,
+                        "HOST-SUFFIX,binance.test,Binance\nHOST,login.example.test,Binance\n")
+        sync.write_text(self.source / aggregate,
+                        "# NAME: Global\n# AUTHOR: upstream\n# HOST: 2\n# TOTAL: 7\n"
+                        "HOST,API.BINANCE.TEST,Global\nHOST,login.example.test,Global\n"
+                        "HOST-SUFFIX,BINANCE.TEST,Global\nHOST-SUFFIX,static.binance.test,Global\n"
+                        "HOST-SUFFIX,notbinance.test,Global\nHOST-SUFFIX,example.test,Global\n"
+                        "IP-ASN,12345,Global\n")
+        profile = copy.deepcopy(self.profile)
+        profile["filters"][:0] = [
+            {"path": dedicated, "tag": "Binance", "policy": "proxy"},
+            {"path": aggregate, "tag": "Global", "policy": "兜底分流", "exclude": [dedicated]}
+        ]
+        return profile, aggregate
+
+    def test_split_filters_remove_owned_hosts_without_changing_upstream(self):
+        profile, original = self.split_profile()
+        before = (self.source / original).read_bytes()
+        outputs, filters, _, _ = sync.render(self.source, profile)
+        generated = "quantumultx/filter/Global/Global.list"
+        rules = [line for line in outputs[generated].splitlines()
+                 if line.strip() and not line.startswith("#")]
+        self.assertEqual(rules, ["HOST-SUFFIX,notbinance.test,Global",
+                                 "HOST-SUFFIX,example.test,Global", "IP-ASN,12345,Global"])
+        self.assertIn("# AUTHOR: upstream", outputs[generated])
+        self.assertIn("# TOTAL: 3", outputs[generated])
+        self.assertIn("# HOST-SUFFIX: 2", outputs[generated])
+        self.assertNotIn("# HOST: 2", outputs[generated])
+        self.assertEqual((self.source / original).read_bytes(), before)
+        self.assertIn(profile["raw_base"] + generated + ", tag=Global", filters)
+        self.assertNotIn(profile["raw_base"] + original + ",", filters)
+        self.assertLess(filters.index("tag=Binance"), filters.index("tag=Global"))
+        self.assertIn(f"| [{generated}]", outputs["quantumultx/catalog.md"])
+        self.assertEqual(len([line for line in filters.splitlines() if line.startswith("https://")]),
+                         len(sync.filter_paths(self.source)))
+
+    def test_excluded_filters_must_be_enabled_before_the_aggregate(self):
+        profile, _ = self.split_profile()
+        for change in ("disabled", "later"):
+            with self.subTest(change=change):
+                invalid = copy.deepcopy(profile)
+                dedicated = invalid["filters"].pop(0)
+                if change == "later":
+                    invalid["filters"].append(dedicated)
+                with self.assertRaisesRegex(ValueError, "must be enabled before"):
+                    sync.render(self.source, invalid)
+
+    def test_split_filter_sync_is_idempotent_and_cleans_removed_derivatives(self):
+        profile, original = self.split_profile()
+        sync.write_text(self.target / "profiles/blackmatrix7.json", json.dumps(profile))
+        self.commit_source()
+        sync.sync(self.target, self.source)
+        sync.check(self.target)
+        generated = self.target / "quantumultx/filter/Global/Global.list"
+        first = generated.read_bytes()
+        sync.sync(self.target, self.source)
+        self.assertEqual(generated.read_bytes(), first)
+        self.assertEqual((self.target / original).read_bytes(), (self.source / original).read_bytes())
+        profile["filters"][1].pop("exclude")
+        sync.write_text(self.target / "profiles/blackmatrix7.json", json.dumps(profile))
+        sync.sync(self.target, self.source)
+        sync.check(self.target)
+        self.assertFalse(generated.exists())
+
     def test_all_in_one_and_components_are_exclusive(self):
         profile = copy.deepcopy(self.profile)
         profile["rewrite_enabled"].append("AllInOne")

@@ -13,6 +13,7 @@
 | [rule/QuantumultX/AdvertisingLite/AdvertisingLite.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/AdvertisingLite/AdvertisingLite.list) | 38066 | reject | 启用 |
 | [rewrite/QuantumultX/AdvertisingLite/AdvertisingLite.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rewrite/QuantumultX/AdvertisingLite/AdvertisingLite.list) | 373 | reject | 启用 |
 | [rule/QuantumultX/WeChat/WeChat.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/WeChat/WeChat.list) | 43 | direct | 启用 |
+| [rule/QuantumultX/Binance/Binance.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Binance/Binance.list) | 12 | Binance | 启用 |
 | [rule/QuantumultX/GoogleVoice/GoogleVoice.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/GoogleVoice/GoogleVoice.list) | 1 | 美国节点 | 启用 |
 | [rule/QuantumultX/OpenAI/OpenAI.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/OpenAI/OpenAI.list) | 35 | 美国节点 | 启用 |
 | [rule/QuantumultX/Claude/Claude.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Claude/Claude.list) | 3 | 美国节点 | 启用 |
@@ -24,7 +25,7 @@
 | [rule/QuantumultX/Telegram/Telegram.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Telegram/Telegram.list) | 40 | 全球加速 | 启用 |
 | [rule/QuantumultX/GlobalMedia/GlobalMedia.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/GlobalMedia/GlobalMedia.list) | 2341 | 国际媒体 | 启用 |
 | [rule/QuantumultX/Apple/Apple.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Apple/Apple.list) | 1881 | 苹果服务 | 启用 |
-| [rule/QuantumultX/Global/Global.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Global/Global.list) | 35822 | 全球加速 | 启用 |
+| [quantumultx/filter/Global/Global.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/quantumultx/filter/Global/Global.list) | 35813 | 全球加速 | 启用 |
 | [rule/QuantumultX/ChinaMax/ChinaMax_No_IPv6.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaMax/ChinaMax_No_IPv6.list) | 119845 | direct | 启用 |
 | [rewrite/QuantumultX/AdvertisingScript/AdvertisingScript.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rewrite/QuantumultX/AdvertisingScript/AdvertisingScript.list) | 11 | reject | 关闭 |
 | [rewrite/QuantumultX/AllInOne/AllInOne.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rewrite/QuantumultX/AllInOne/AllInOne.list) | 11 | reject | 关闭 |
@@ -142,7 +143,6 @@
 | [rule/QuantumultX/Bestbuy/Bestbuy.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Bestbuy/Bestbuy.list) | 82 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/BianFeng/BianFeng.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/BianFeng/BianFeng.list) | 100 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/BiliBiliIntl/BiliBiliIntl.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/BiliBiliIntl/BiliBiliIntl.list) | 1 | 兜底分流 | 关闭 |
-| [rule/QuantumultX/Binance/Binance.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Binance/Binance.list) | 12 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/Bing/Bing.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Bing/Bing.list) | 9 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/Blizzard/Blizzard.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Blizzard/Blizzard.list) | 62 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/BlockHttpDNS/BlockHttpDNS.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/BlockHttpDNS/BlockHttpDNS.list) | 63 | 兜底分流 | 关闭 |
@@ -700,6 +700,10 @@
 | [rule/QuantumultX/ifanr/ifanr.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ifanr/ifanr.list) | 34 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/myTVSUPER/myTVSUPER.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/myTVSUPER/myTVSUPER.list) | 7 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/zhanqi/zhanqi.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/zhanqi/zhanqi.list) | 1 | 兜底分流 | 关闭 |
+
+## 独立分流与聚合规则拆分
+
+- [quantumultx/filter/Global/Global.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/quantumultx/filter/Global/Global.list) 从 [rule/QuantumultX/Global/Global.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Global/Global.list) 去掉独立分流清单覆盖的规则：[rule/QuantumultX/Binance/Binance.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Binance/Binance.list)。上游原文保留。
 
 ## 重写模块
 

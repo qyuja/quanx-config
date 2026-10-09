@@ -23,7 +23,7 @@ HTTPS 重写需要在客户端开启重写与 MITM、生成并信任本机证书
 - [完整重写资源片段](quantumultx/rewrite_remote.conf)
 - [全部资源、实际条数、默认策略和脚本依赖索引](quantumultx/catalog.md)
 
-分流片段使用现有的 `美国节点`、`声田音乐`、`哔哩哔哩`、`国际媒体`、`苹果服务`、`全球加速` 和 `兜底分流` 策略；用于其他配置时需先建立这些策略，或修改 `force-policy`。
+分流片段使用现有的 `美国节点`、`Binance`、`声田音乐`、`哔哩哔哩`、`国际媒体`、`苹果服务`、`全球加速` 和 `兜底分流` 策略；用于其他配置时需先建立这些策略，或修改 `force-policy`。
 
 ## 节点订阅与解析
 
@@ -38,7 +38,9 @@ https://example.invalid/quanx/nodes.conf, tag=自建节点, update-interval=3600
 
 ## 默认分流
 
-常用规则按以下顺序配置：局域网与规则修正 → 防劫持与去广告 → 微信直连 → Google Voice 和 AI 服务 → Spotify、哔哩哔哩、YouTube、Telegram、国际媒体 → Apple → 全球代理 → 国内直连。原有本地分流仍保留，具体匹配结果还受 Quantumult X 本地规则和匹配设置影响。
+常用规则按以下顺序配置：局域网与规则修正 → 防劫持与去广告 → 微信直连 → Binance → Google Voice 和 AI 服务 → Spotify、哔哩哔哩、YouTube、Telegram、国际媒体 → Apple → 全球代理 → 国内直连。原有本地分流仍保留，具体匹配结果还受 Quantumult X 本地规则和匹配设置影响。
+
+Binance 使用[独立规则清单](rule/QuantumultX/Binance/Binance.list)和同名策略组，默认沿用全球加速，可在圈 X 中单独切换节点。Global 引用[生成的拆分版本](quantumultx/filter/Global/Global.list)，去掉 Binance 清单覆盖的规则；`rule/QuantumultX/Global/Global.list` 保留上游原文。拆分由 `profiles/blackmatrix7.json` 中的 `exclude` 设置控制，独立清单必须在聚合资源之前启用，每次同步自动重新生成。
 
 广告分流采用 `AdvertisingLite`；完整 `Advertising`、`AdvertisingTest` 和其他全部规则同样保存在仓库中，可按需选择。`ChinaMax_No_IPv6` 与原配置的 `no-ipv6` 设置一致。未指定专用策略的可选资源沿用 `兜底分流`，启用某个国内服务、广告或其他专用资源前应明确设置 `force-policy`。
 

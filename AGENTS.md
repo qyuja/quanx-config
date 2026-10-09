@@ -5,6 +5,7 @@
 - 主配置继续使用 `20250723-self.conf`，节点使用通用订阅占位地址，保留 DNS、应用分流策略、本地分流、任务和 MITM 设置的模板；修改受管理的资源选择时编辑 `profiles/blackmatrix7.json`。
 - `rule/`、`rewrite/`、`script/`、`UPSTREAM_README.md` 和 `LICENSES/blackmatrix7-GPL-2.0.txt` 是上游原文，禁止直接修改。
 - `quantumultx/` 和 `UPSTREAM.json` 由 `tools/sync_upstream.py` 生成。`quantumultx/rewrite/` 把上游仓库内的脚本地址替换成本仓库地址；删除的脚本使用 `dependencies/manifest.json` 固定的历史原文，无法核实恢复的失效脚本条目注释保留。保留作者和原仓库声明。
+- 聚合分流的 `exclude` 从生成版本移除独立清单覆盖的规则，结果放在 `quantumultx/filter/`；独立清单必须在聚合资源之前启用。Binance 使用独立策略组，Global 的上游原文仍完整保留。
 - 全量收录与默认启用分开：聚合规则有重叠，AllInOne 与其组成模块不能同时启用；有配套 `.list` 的 rewrite 必须同时配置对应分流。
 - 不在日志、新文件或评审材料中复制节点订阅凭据，不提交实际节点地址、订阅域名、SSH 配置、客户端私钥、MITM 证书和本机配置。
 - 验证命令：`python3 -m unittest discover -s tests -v`、`python3 tools/sync_upstream.py --check`。
