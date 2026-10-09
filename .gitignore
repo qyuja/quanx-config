@@ -3,3 +3,13 @@ __pycache__/
 *.pyc
 .sync-*/
 *.local.conf
+/private/
+/subscription/settings.json
+/subscription/ssh.conf
+/subscription/known_hosts
+/subscription/keys/
+/subscription/nodes*.conf
+/subscription/nginx*.conf
+*.pem
+*.key
+*.p12

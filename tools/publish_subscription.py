@@ -90,6 +90,27 @@ def validate_repository(repository):
         raise ValueError("Repository resource validation failed; publication was not changed")
 
 
+def main_configuration(repository, config, private_config=None):
+    public = (repository / config).read_text()
+    if not private_config:
+        return public
+    private_path = Path(private_config).resolve()
+    if private_path == repository or repository in private_path.parents:
+        raise ValueError("Private configuration must remain outside the Git checkout")
+    private = private_path.read_text()
+    # Keep personal sections private while refreshing generated resource selections.
+    for section in ("filter_remote", "rewrite_remote"):
+        begin, end = f"# BEGIN blackmatrix7 {section}", f"# END blackmatrix7 {section}"
+        if any(text.count(begin) != 1 or text.count(end) != 1 for text in (public, private)):
+            raise ValueError(f"Expected one managed resource block for {section}")
+        pattern = re.compile(rf"^# BEGIN blackmatrix7 {section}\n.*?^# END blackmatrix7 {section}$", re.M | re.S)
+        blocks = pattern.findall(public)
+        if len(blocks) != 1 or len(pattern.findall(private)) != 1:
+            raise ValueError(f"Expected one managed resource block for {section}")
+        private = pattern.sub(lambda match: blocks[0], private)
+    return private
+
+
 def publish(settings, node_files):
     repository = Path(settings["repository"]).resolve()
     destination = Path(settings["destination"]).resolve()
@@ -106,10 +127,15 @@ def publish(settings, node_files):
     if dirty:
         raise ValueError("Repository has local modifications; refusing to publish")
     revision = subprocess.check_output(["git", "-C", str(repository), "rev-parse", "HEAD"], text=True).strip()
+    config_text = main_configuration(repository, config, settings.get("private_config"))
+    node_placeholder = "https://example.invalid/quanx/nodes.conf"
+    if config_text.count(node_placeholder) != 1:
+        raise ValueError("Main configuration must contain exactly one self-hosted node subscription")
     identity = {
         "revision": revision,
         "nodes_sha256": hashlib.sha256(nodes.encode()).hexdigest(),
         "base_sha256": hashlib.sha256(base.encode()).hexdigest(),
+        "config_sha256": hashlib.sha256(config_text.encode()).hexdigest(),
     }
     state = current / ".publication.json"
     if state.exists() and json.loads(state.read_text()) == identity:
@@ -117,10 +143,6 @@ def publish(settings, node_files):
     if not state.exists() or json.loads(state.read_text())["revision"] != revision:
         validate_repository(repository)
     raw_base = profile["raw_base"]
-    node_placeholder = settings["public_base"].rstrip("/") + "/nodes.conf"
-    config_text = (repository / config).read_text()
-    if config_text.count(node_placeholder) != 1:
-        raise ValueError("Main configuration must contain exactly one self-hosted node subscription")
     rendered = {config: config_text.replace(raw_base, base).replace(node_placeholder, base + "nodes.conf"),
                 "nodes.conf": nodes}
     for path in sorted((repository / "quantumultx").rglob("*")):

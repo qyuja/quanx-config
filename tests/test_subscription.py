@@ -100,7 +100,10 @@ class PublishTests(unittest.TestCase):
         raw = "https://raw.githubusercontent.com/example/config/master/"
         files = {
             "profiles/blackmatrix7.json": json.dumps({"raw_base": raw, "config": "main.conf"}),
-            "main.conf": "[server_remote]\nhttps://sub.example.com/quanx/nodes.conf,tag=自建\n[filter_remote]\n" + raw + "rule/one.list\n",
+            "main.conf": "[server_remote]\nhttps://example.invalid/quanx/nodes.conf,tag=自建\n[filter_remote]\n"
+                         "# BEGIN blackmatrix7 filter_remote\n" + raw + "rule/one.list\n# END blackmatrix7 filter_remote\n"
+                         "[rewrite_remote]\n# BEGIN blackmatrix7 rewrite_remote\n" + raw + "quantumultx/rewrite/one.conf\n"
+                         "# END blackmatrix7 rewrite_remote\n",
             "rule/one.list": "HOST,example.com,direct\n",
             "rewrite/original.conf": "# Original author retained\n",
             "script/one.js": "$done({});\n",
@@ -147,6 +150,46 @@ class PublishTests(unittest.TestCase):
         target = (self.root / "current").resolve()
         self.assertFalse(publisher.publish(self.settings, [self.nodes]))
         self.assertEqual((self.root / "current").resolve(), target)
+
+    def test_private_configuration_stays_outside_git_and_tracks_changes(self):
+        private = self.root / "personal.conf"
+        text = (self.repo / "main.conf").read_text()
+        private.write_text(text.replace("rule/one.list", "rule/outdated.list") + "[dns]\nno-ipv6\n")
+        self.settings["private_config"] = str(private)
+        publisher.publish(self.settings, [self.nodes])
+        output = (self.root / "current/main.conf").read_text()
+        self.assertIn("rule/one.list", output)
+        self.assertNotIn("outdated.list", output)
+        self.assertIn("[dns]\nno-ipv6", output)
+        self.assertFalse((self.repo / "personal.conf").exists())
+        private.write_text(private.read_text().replace("no-ipv6", "prefer-ipv6"))
+        self.assertTrue(publisher.publish(self.settings, [self.nodes]))
+        self.assertIn("prefer-ipv6", (self.root / "current/main.conf").read_text())
+
+    def test_missing_or_in_checkout_private_configuration_preserves_last_good_release(self):
+        publisher.publish(self.settings, [self.nodes])
+        previous = (self.root / "current").resolve()
+        self.settings["private_config"] = str(self.root / "missing.conf")
+        with self.assertRaises(FileNotFoundError):
+            publisher.publish(self.settings, [self.nodes])
+        self.assertEqual((self.root / "current").resolve(), previous)
+        self.settings["private_config"] = str(self.repo / "main.conf")
+        with self.assertRaisesRegex(ValueError, "outside the Git checkout"):
+            publisher.publish(self.settings, [self.nodes])
+
+    def test_private_configuration_requires_unambiguous_managed_sections(self):
+        private = self.root / "personal.conf"
+        text = (self.repo / "main.conf").read_text()
+        publisher.publish(self.settings, [self.nodes])
+        previous = (self.root / "current").resolve()
+        nested = text.replace("# BEGIN blackmatrix7 filter_remote",
+                              "# BEGIN blackmatrix7 filter_remote\n[dns]\nno-ipv6\n# BEGIN blackmatrix7 filter_remote")
+        self.settings["private_config"] = str(private)
+        for invalid in (text.replace("# END blackmatrix7 filter_remote", "# incomplete"), text + text, nested):
+            private.write_text(invalid)
+            with self.assertRaisesRegex(ValueError, "one managed resource block"):
+                publisher.publish(self.settings, [self.nodes])
+            self.assertEqual((self.root / "current").resolve(), previous)
 
     def test_private_checkout_permissions_do_not_hide_published_resources(self):
         (self.repo / "rule").chmod(0o700)

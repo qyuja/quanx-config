@@ -4,5 +4,12 @@
   "current": "/opt/projects/quanx-subscription/current",
   "public_base": "https://sub.example.com/quanx",
   "access_key": "",
-  "include_us": true
+  "private_config": "/opt/projects/quanx-subscription/private/main.conf",
+  "local_node": {
+    "config": "/etc/sing-box/config.json",
+    "server": "192.0.2.1",
+    "country": "美国",
+    "pin_anytls": false
+  },
+  "remote_node": "remote-export"
 }
