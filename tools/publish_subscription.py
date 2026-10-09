@@ -172,6 +172,9 @@ def nginx_snippet(settings):
     if not re.fullmatch(r"/[A-Za-z0-9_./-]+/", path) or not re.fullmatch(r"/[A-Za-z0-9_./-]+", str(current)):
         raise ValueError("Nginx paths contain unsupported characters")
     return f"""# Generated locally; this file contains a private bearer key.
+# Use a dedicated subscription HTTPS server: normalized paths may leave a location.
+access_log off;
+error_log /dev/null;
 location ^~ {path} {{
     alias {current}/;
     autoindex off;

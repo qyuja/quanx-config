@@ -203,8 +203,11 @@ class PublishTests(unittest.TestCase):
         self.assertIn("location ^~ /quanx/TEST_ONLY_BEARER_KEY_FOR_UNIT_TESTS/", snippet)
         self.assertIn("location ^~ /quanx/", snippet)
         self.assertIn("return 404", snippet)
-        self.assertEqual(snippet.count("access_log off"), 2)
-        self.assertEqual(snippet.count("error_log /dev/null"), 2)
+        server_directives = snippet.split("location ^~", 1)[0]
+        self.assertIn("access_log off;", server_directives)
+        self.assertIn("error_log /dev/null;", server_directives)
+        self.assertEqual(snippet.count("access_log off"), 3)
+        self.assertEqual(snippet.count("error_log /dev/null"), 3)
         self.assertIn('Cache-Control "private, no-store"', snippet)
 
     def test_private_snippet_is_atomic_under_public_umask(self):
