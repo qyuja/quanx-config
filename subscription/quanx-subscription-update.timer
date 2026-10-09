@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh private Quantumult X subscription every five minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+RandomizedDelaySec=30s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

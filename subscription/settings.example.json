@@ -1,0 +1,8 @@
+{
+  "repository": "/opt/projects/quanx-subscription/repository",
+  "destination": "/opt/projects/quanx-subscription/releases",
+  "current": "/opt/projects/quanx-subscription/current",
+  "public_base": "https://sub.example.com/quanx",
+  "access_key": "",
+  "include_us": true
+}

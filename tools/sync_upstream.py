@@ -341,8 +341,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--upstream", type=Path, help="Existing clean upstream Git checkout")
     parser.add_argument("--check", action="store_true", help="Validate current snapshot offline")
+    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1],
+                        help="Configuration checkout to validate or synchronize")
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
+    root = args.root.resolve()
     if args.check:
         check(root)
         return

@@ -1,0 +1,11 @@
+[Unit]
+Description=Update private Quantumult X configuration and self-hosted nodes
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+UMask=0077
+ExecStart=/bin/sh /opt/projects/quanx-subscription/bin/update.sh
+TimeoutStartSec=300
