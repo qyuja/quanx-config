@@ -7,7 +7,7 @@
 
 | 资源 | 实际条数 | 策略 | 默认状态 |
 | --- | ---: | --- | --- |
-| [rule/QuantumultX/Lan/Lan.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Lan/Lan.list) | 140 | direct | 启用 |
+| [rule/QuantumultX/Lan/Lan.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Lan/Lan.list) | 142 | direct | 启用 |
 | [rule/QuantumultX/Direct/Direct.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Direct/Direct.list) | 232 | direct | 启用 |
 | [rule/QuantumultX/Hijacking/Hijacking.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Hijacking/Hijacking.list) | 228 | reject | 启用 |
 | [rule/QuantumultX/AdvertisingLite/AdvertisingLite.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/AdvertisingLite/AdvertisingLite.list) | 38066 | reject | 启用 |
@@ -25,7 +25,7 @@
 | [rule/QuantumultX/Telegram/Telegram.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Telegram/Telegram.list) | 40 | 全球加速 | 启用 |
 | [rule/QuantumultX/GlobalMedia/GlobalMedia.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/GlobalMedia/GlobalMedia.list) | 2341 | 国际媒体 | 启用 |
 | [rule/QuantumultX/Apple/Apple.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Apple/Apple.list) | 1881 | 苹果服务 | 启用 |
-| [quantumultx/filter/Global/Global.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/quantumultx/filter/Global/Global.list) | 35912 | 全球加速 | 启用 |
+| [quantumultx/filter/Global/Global.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/quantumultx/filter/Global/Global.list) | 35930 | 全球加速 | 启用 |
 | [rule/QuantumultX/ChinaMax/ChinaMax_No_IPv6.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaMax/ChinaMax_No_IPv6.list) | 119072 | direct | 启用 |
 | [rewrite/QuantumultX/AdvertisingScript/AdvertisingScript.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rewrite/QuantumultX/AdvertisingScript/AdvertisingScript.list) | 11 | reject | 关闭 |
 | [rewrite/QuantumultX/AllInOne/AllInOne.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rewrite/QuantumultX/AllInOne/AllInOne.list) | 11 | reject | 关闭 |
@@ -76,9 +76,9 @@
 | [rule/QuantumultX/Adidas/Adidas.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Adidas/Adidas.list) | 19 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/Adobe/Adobe.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Adobe/Adobe.list) | 137 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/AdobeActivation/AdobeActivation.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/AdobeActivation/AdobeActivation.list) | 118 | 兜底分流 | 关闭 |
-| [rule/QuantumultX/Advertising/Advertising.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Advertising/Advertising.list) | 291019 | reject | 关闭 |
+| [rule/QuantumultX/Advertising/Advertising.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Advertising/Advertising.list) | 291708 | reject | 关闭 |
 | [rule/QuantumultX/AdvertisingMiTV/AdvertisingMiTV.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/AdvertisingMiTV/AdvertisingMiTV.list) | 165 | 兜底分流 | 关闭 |
-| [rule/QuantumultX/AdvertisingTest/AdvertisingTest.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/AdvertisingTest/AdvertisingTest.list) | 315654 | reject | 关闭 |
+| [rule/QuantumultX/AdvertisingTest/AdvertisingTest.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/AdvertisingTest/AdvertisingTest.list) | 318626 | reject | 关闭 |
 | [rule/QuantumultX/Aerogard/Aerogard.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Aerogard/Aerogard.list) | 3 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/Afdian/Afdian.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Afdian/Afdian.list) | 2 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/Agora/Agora.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/Agora/Agora.list) | 3 | 兜底分流 | 关闭 |
@@ -180,10 +180,10 @@
 | [rule/QuantumultX/China/China.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/China/China.list) | 3753 | direct | 关闭 |
 | [rule/QuantumultX/ChinaASN/ChinaASN.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaASN/ChinaASN.list) | 1009 | 兜底分流 | 关闭 |
 | [rule/QuantumultX/ChinaDNS/ChinaDNS.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaDNS/ChinaDNS.list) | 4 | 兜底分流 | 关闭 |
-| [rule/QuantumultX/ChinaIPs/ChinaIPs.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPs.list) | 19609 | direct | 关闭 |
-| [rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest.list) | 22989 | 兜底分流 | 关闭 |
-| [rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest_No_IPv6.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest_No_IPv6.list) | 16158 | 兜底分流 | 关闭 |
-| [rule/QuantumultX/ChinaIPs/ChinaIPs_No_IPv6.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPs_No_IPv6.list) | 13943 | direct | 关闭 |
+| [rule/QuantumultX/ChinaIPs/ChinaIPs.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPs.list) | 19611 | direct | 关闭 |
+| [rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest.list) | 22990 | 兜底分流 | 关闭 |
+| [rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest_No_IPv6.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPsTest/ChinaIPsTest_No_IPv6.list) | 16155 | 兜底分流 | 关闭 |
+| [rule/QuantumultX/ChinaIPs/ChinaIPs_No_IPv6.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPs/ChinaIPs_No_IPv6.list) | 13945 | direct | 关闭 |
 | [rule/QuantumultX/ChinaIPsBGP/ChinaIPsBGP.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaIPsBGP/ChinaIPsBGP.list) | 3916 | direct | 关闭 |
 | [rule/QuantumultX/ChinaMax/ChinaMax.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaMax/ChinaMax.list) | 123383 | direct | 关闭 |
 | [rule/QuantumultX/ChinaMaxNoIP/ChinaMaxNoIP.list](https://raw.githubusercontent.com/qyuja/quanx-config/master/rule/QuantumultX/ChinaMaxNoIP/ChinaMaxNoIP.list) | 110497 | 兜底分流 | 关闭 |
